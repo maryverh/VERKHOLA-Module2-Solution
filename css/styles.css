@@ -21,7 +21,7 @@ a {
   color: black;
 }
 .row > div {
-  /*border: 2px solid red;*/
+ 
     background-color: white;
 }
 
@@ -71,27 +71,6 @@ section{
   margin: 20px;
   border: 1px solid black;
   background-color: gray;
-}
-
-.hd{
-  float: right;
-  right: 10px;
-  width: 130px;
-  margin-top: -2px;
-  text-align: center;
-  border: 1px solid black;
-}
-
-#ch{
-  background-color: Lightsalmon;
-}
-
-#bf{
-  background-color: Olivedrab;
-}
-
-#sh{
-  background-color: Orange;
 }
 
 
