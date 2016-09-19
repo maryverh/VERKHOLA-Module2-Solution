@@ -5,32 +5,31 @@ angular.module('LunchCheck', [])
 .controller('LunchController', LunchController);
 
 LunchController.$inject = ['$scope'];
+
 function LunchController($scope) {
-  
+  $scope.menues="";
+  $scope.message="";	
   $scope.ctrlLunch = function () {
-    var lunch_items = [];
-	for (var i = 0; i < lunchContents.length; i++) {
-		var item = lunchContents[i].trim();
-		if (item.length > 0) {
-			lunch_items.push(item);
-			} else {
-				$scope.lunch_items++;
-			}
-		}
-    if (lunch_items.length == 0) {
-		$scope.status=0;
-		}
-
-  	if (lunch_items.length <= 3) {
-		$scope.status = 1;
-		} else {
-		$scope.status = 2;
-		}
-
-		$scope.lunchContents = lunch_items.join(', ');
-
-	return;
+    if($scope.menues){
+    	var sep=",";
+    	var menuItems=$scope.menues.split(sep);
+    	var counter=0;
+    	for (var i=0; i<menuItems.length; i++){
+    		if(!(menuItems[i].length==0||!menuItems[i].trim())){
+    			counter+=1;
+    		}
+    	}
+    	if(counter>3){
+    		$scope.message="Too much!";
+    	}else{
+    		$scope.message="Enjoy!";
+    	}
+    }
+    else{
+    	$scope.message="Please enter data first";
+    }
   };
-}
+ };   
 
+    
 })();

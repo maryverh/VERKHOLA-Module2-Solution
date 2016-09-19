@@ -1,49 +1,32 @@
 <!DOCTYPE html>
-<html ng-app='LunchCheck'>
-  <head>
-    <meta charset="utf-8">
+<html lang="en">
+<head>
+    <title>Lunch Checker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <style>
+      .message { font-size: 1.5em; font-weight: bold; }
+    </style>
     <script src="angular.min.js"></script>
     <script src="app.js"></script>
-    <style> body { font-size: 1.2em; }</style>
-    <title>Healthy Lunch</title>
   </head>
-  <body>
-    <div ng-controller='LunchController'>
-      <div class="container">
-        <h1>Lunch Checker</h1>
-        <div class="form-group">
-          <input id="lunch-menu" type="text" ng-model="lunchContents" 
-           placeholder="list comma separated dishes you usually have for lunch"
-           class="form-control">
+<body class="ng-scope" ng-app="LunchCheck">
+   <div class="container ng-scope" ng-controller="LunchController">
+   
+     <h1>Lunch Checker</h1>
+
+         <div class="form-group">
+             <input id="lunch-menu" ng-model="menues" placeholder="list comma separated dishes you usually have for lunch" class="form-control ng-pristine ng-untouched ng-valid ng-empty" type="text">
          </div>
          <div class="form-group">
-           <button ng-click="ctrlLunch()" class="btn btn-default">Check If Too Much</button>
+             <button class="btn btn-default" ng-click="ctrlLunch();">Check If Too Much</button>
          </div>
-         <div class="form-group message">
-           <div ng-show="status == 0">
-           <p>
-           <h2>Please enter data first</h2>
-           </p>
-           </div>
-           <div ng-show="status == 1">
-           <p>
-            <h4>Good to Go! Enjoy!</h4>
-            </p>
-           </div>
-          <div ng-show="status == 2">
-          <p>
-           <h4>Too Much!</h4>
-           </p>
-          </div>
-        </div>
-
+         <div class="form-group message ng-binding">
+           {{message}}
+           
          </div>
-   </div>
-
-    </div>
-  </body>
+         
+</body>
 </html>
-
-
 
 
