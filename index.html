@@ -1,58 +1,32 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="NarrowItDownApp">
   <head>
-    <title>Shopping List Check Off</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Narrow Down Your Menu Choice</title>
     <script src="angular.min.js"></script>
     <script src="app.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
-    <style>
-      .emptyMessage {
-        font-weight: bold;
-        color: red;
-        font-size: 1.2em;
-      }
-      li {
-        margin-bottom: 7px;
-        font-size: 1.2em;
-      }
-      li > button {
-        margin-left: 6px;
-      }
-      button > span {
-        color: green;
-      }
-    </style>
+    <link rel="stylesheet" href="styles/styles.css">
   </head>
-<body ng-app="ShoppingListCheckOff">
-  <div class="container">
-  <h1>Shopping List Check Off</h1>
+<body ng-controller="NarrowItDownController as menu">
+   <div class="container" >
+    <h1>Narrow Down Your Chinese Menu Choice</h1>
 
-  <div class="row">
-
-    <!-- To Buy List -->
-    <div class="col-md-6" ng-controller="ToBuyController as itemList">
-     <h2>To Buy:</h2>
-     <ul>
-       <li ng-repeat="items in itemList.items">Buy {{ items.quantity }} {{ items.name }}
-          <button class="btn btn-default"  ng-click="itemList.removeItem($index);">
-            <span class="glyphicon glyphicon-ok"></span> Bought
-          </button>
-       </li>
-     </ul>
-    <div class="emptyMessage" ng-if="itemList.empty()">Everything is bought!</div>
+    <div class="form-group">
+      <input ng-model="order" type="text" placeholder="search term" class="form-control">
+    </div>
+    <div class="form-group narrow-button">
+      <button ng-click="menu.search(order)" class="btn btn-primary">Narrow It Down For Me!</button>
     </div>
 
-    <!-- Already Bought List -->
-    <div class="col-md-6" ng-controller="AlreadyBoughtController as boughtList">
-     <h2>Already Bought:</h2>
-     <ul>
-       <li ng-repeat="items in boughtList.items">Bought {{ items.quantity }} {{ items.name }}</li>
-     </ul>
-     <div class="emptyMessage" ng-if="boughtList.empty()">Nothing bought yet.</div>
-    </div>
+    <!-- Bonus loader (see Bonus section of the assignment) -->
+    <items-loader-indicator></items-loader-indicator> 
+
+    <!-- found-items should be implemented as a component -->
+    <found-items id="menuService" fnd-items="menu" items="menu.items"  on-remove="menu.removeItem($index)"></found-items>
+    
+
   </div>
-</div>
 
 </body>
 </html>
